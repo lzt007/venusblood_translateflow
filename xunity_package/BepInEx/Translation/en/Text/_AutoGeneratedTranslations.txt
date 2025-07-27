@@ -1,0 +1,4 @@
+﻿いいえ=No
+はい=Yes
+dualtailからのお願いとご注意=Requests and cautions from dualtail
+ダイアログ=dialog
