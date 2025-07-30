@@ -2,7 +2,7 @@ import requests
 import json
 
 
-def translate(text):
+def translate(text,glossary={},role=""):
     """
     将字符串中的日文翻译为中文，保留非日文部分，并处理《》包裹的专有名词
 
