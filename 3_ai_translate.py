@@ -1,8 +1,9 @@
 import os
 import json
 import traceback
-from translator import translate
+# from translator import translate
 # from translator_manual import translate
+from translator_sakurallm import translate
 
 keyjson_dir = "./keyjson"
 translated_dir = "./translated"
@@ -21,8 +22,10 @@ for root, dirs, files in os.walk(keyjson_dir):
             with open(os.path.join(root, file), "r", encoding="utf-8") as f:
                 data_list = json.load(f)
             total = len(data_list)
+            print("正在构造术语表")
+            # 构造人名和章节名术语表
             for i in range(0, len(data_list)):
-                print(f"{i}/{total}")
+                print(f"{i+1}/{total}")
                 if data_list[i]["subTitle"] in subTitles:
                     subtitle = subTitles[data_list[i]["subTitle"]]
                 else:
@@ -44,13 +47,14 @@ for root, dirs, files in os.walk(keyjson_dir):
                         with open(roles_path, "w", encoding="utf-8") as f:
                             f.write(json.dumps(roles, ensure_ascii=False))
                     data_list[i]["window"]["name"] = name
-
+            print("正在翻译对话")
+            # 翻译剧本
+            for i in range(0, len(data_list)):
+                print(f"{i+1}/{total}")
+                if data_list[i]["window"] is None:
+                    continue
                 for j in range(0, len(data_list[i]["window"]["texts"])):
-                    j_str = data_list[i]["window"]["texts"][j]
-                    # 先将对话中的人名都替换为中文并用《》标记在翻译时让ai跳过人名
-                    for k, v in roles.items():
-                        j_str = j_str.replace(k, f"《-{v}-》")
-                    data_list[i]["window"]["texts"][j] = translate(data_list[i]["window"]["texts"][j])
+                    data_list[i]["window"]["texts"][j] = translate(data_list[i]["window"]["texts"][j],{},role=data_list[i]["window"]["name"])
                 print(data_list[i])
             with open(os.path.join(translated_dir, file), "w", encoding="utf-8") as f:
                 f.write(json.dumps(data_list, ensure_ascii=False, indent=2))
