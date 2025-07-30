@@ -38,7 +38,7 @@
 [UnityPy](https://github.com/K0lb3/UnityPy)用于解封包unity资源文件  
 [XUnity.AutoTranslator](https://github.com/bbepis/XUnity.AutoTranslator)用于向游戏中注入中文字体。  
 PS:VBL姥爷汉化版时永远的痛，花了两个星期才干进去的字体，还有各种奇怪的显示bug，还因为修改了游戏文件导致要绑定游戏版本。如今直接通用外挂就可以了（大人时代变了.jpg）。 
-[SakuraLLM]([https://github.com/bbepis/XUnity.AutoTranslator](https://huggingface.co/SakuraLLM))优秀的日译中大模型
+[SakuraLLM](https://huggingface.co/SakuraLLM))优秀的日译中大模型
 
 ### 注意事项
 1.祝所有看不看说明的朋友好运  
